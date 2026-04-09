@@ -7,6 +7,7 @@ led = 26
 state = 1
 period = 1.0
 
+
 GPIO.setup(led, GPIO.OUT)
 
 while True:
