@@ -4,13 +4,11 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 led = 26
-state = 1
-period = 5.0
-
+foto_check = 6
 
 GPIO.setup(led, GPIO.OUT)
+GPIO.setup(foto_check, GPIO.IN)
 
 while True:
-    GPIO.output(led, state)
-    state = not state
-    time.sleep(period)
+    imp = GPIO.input(foto_check)
+    GPIO.output(led, not imp)

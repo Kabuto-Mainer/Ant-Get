@@ -17,10 +17,20 @@ GPIO.setup(button_down, GPIO.IN)
 counter = 0
 
 while True:
-    counter += GPIO.input(button_up)
-    counter -= GPIO.input(button_down)
+    flag_1 = GPIO.input(button_up)
+    flag_2 = GPIO.input(button_down)
+
+    if flag_1 + flag_2 == 2:
+        counter = 255
+    else:
+        counter += flag_1
+        counter -= flag_2
+    time.sleep(0.05)
+    counter = max(0, min(counter, 255))
 
     num = counter
     for i in range(8):
-        GPIO.output(leds[i], num % 2)
-        num /= 2
+        val = num % 2
+        GPIO.output(leds[i], val)
+        num //= 2
+    
