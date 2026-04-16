@@ -8,7 +8,7 @@ for pin in pins:
     GPIO.setup(pin, GPIO.OUT)
     GPIO.output(pin, 0)
 
-dynamic_range = 3.17
+dynamic_range = 1.2
 
 def voltage_to_number(voltage):
     if not (0.0 <= voltage <= dynamic_range):

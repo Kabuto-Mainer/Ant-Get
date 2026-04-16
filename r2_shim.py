@@ -36,7 +36,7 @@ class R2R_Dac:
 
 if __name__ == "__main__":
     try:
-        dac = R2R_Dac(16, 200, 3.183, True)
+        dac = R2R_Dac(12, 500, 3.183, True)
 
         while True:
             try:

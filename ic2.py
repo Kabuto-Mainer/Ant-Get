@@ -52,7 +52,7 @@ class mcp_c:
 if __name__ == "__main__":
     dac = None
     try:
-        dac = MCP4725(5.0, 0x61, True)
+        dac = mcp_c(5.0, 0x61, True)
 
         while True:
             try:
