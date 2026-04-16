@@ -23,11 +23,11 @@ def decimal2binary(value):
 
 def number_to_dac(number):
     bits = decimal2binary(number)
-    for bit, pins in bits, pins:
-        GPIO.output(pin, bit)
+    for i in range(8):
+        GPIO.output(pins[i], bits[i])
 
 try:
-    while Tsrue:
+    while True:
         try:
             voltage = float(input("Введите напряжение в Вольтах: "))
             number = voltage_to_number(voltage)
