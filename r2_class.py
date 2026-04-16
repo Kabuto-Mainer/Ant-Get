@@ -3,6 +3,9 @@ import math
 
 GPIO.setmode(GPIO.BCM)
 
+def decimal2binary(value):
+    return [int(bit) for bit in bin(value)[2:].zfill(8)]
+
 
 class R2R_Dac:
     def __init__(self, gpio_bits, dynamic_range, verbose = False):
@@ -38,7 +41,7 @@ class R2R_Dac:
 
 if __name__ == "__main__":
     try:
-        dac = R2R_DAC([16, 20, 21, 25, 26, 17, 27, 22], 3.183, True)
+        dac = R2R_Dac([16, 20, 21, 25, 26, 17, 27, 22], 3.183, True)
 
         while True:
             try:
@@ -51,8 +54,6 @@ if __name__ == "__main__":
     finally:
         dac.deinit()
 
-def decimal2binary(value):
-    return [int(bit) for bit in bin(value)[2:].zfill(8)]
 
 
 
