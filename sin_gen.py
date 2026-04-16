@@ -13,7 +13,7 @@ def get_trig_wave_ampltd(freq: float, time: float):
 
     if value <= 0.5:
         return value
-    return value - 0.5
+    return 1.0 - value 
 
 def wait_for_sampling_period(freq: float):
     time.sleep(1 / freq)

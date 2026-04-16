@@ -4,13 +4,13 @@ import time
 
 
 if __name__ == "__main__":
-    amplitude = 3.2
+    amplitude = 5.0
     signal_frequency = 10
-    sampling_frequency = 1000
+    sampling_frequency = 200
     t = 0.0
 
     try:
-        dac = r2r.R2R_Dac(12, 5000, 3.2, True)
+        dac = r2r.mcp_c(5.0, 0x61, False)
 
         while True:
             # try:
