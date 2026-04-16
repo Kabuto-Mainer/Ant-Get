@@ -1,26 +1,19 @@
-import RPi.GPIO as GPIO
-import time
+def decimal_to_bits(value: int, bits: int) -> list[int]:
+    """Преобразовать число в список битов от старшего к младшему."""
+    return [(value >> i) & 1 for i in range(bits - 1, -1, -1)]
 
-GPIO.setmode(GPIO.BCM)
+def bits_to_dec(bits: list[int]):
+    num = 0
+    counter = 0
+    for i in bits:
+        num += i * 2**counter
+        counter += 1
 
-leds = [24, 22, 23, 27, 17, 25, 12, 16]
-for led in leds:
-    GPIO.setup(led, GPIO.OUT)
-    GPIO.output(led, 0)
+    return num
 
-button_up = 9
-button_down = 10
-GPIO.setup(button_up, GPIO.IN)
-GPIO.setup(button_down, GPIO.IN)
+def decimal2binary(value):
 
+    return [int(bit) for bit in bin(value)[2:].zfill(8)]
 
-counter = 0
-
-while True:
-    counter += GPIO.input(button_up)
-    counter -= GPIO.input(button_down)
-
-    num = counter
-    for i in range(8):
-        GPIO.output(leds[i], num % 2)
-        num /= 2
+# print(decimal_to_bits(277, 10))
+print(bits_to_dec(reversed([1,0,1,0,1,0,1,0])))
