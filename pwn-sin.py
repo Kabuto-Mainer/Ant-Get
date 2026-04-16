@@ -10,7 +10,7 @@ if __name__ == "__main__":
     t = 0.0
 
     try:
-        dac = r2r.R2R_Dac(12, 500, 3.2, True)
+        dac = r2r.R2R_Dac(12, 5000, 3.2, True)
 
         while True:
             # try:
