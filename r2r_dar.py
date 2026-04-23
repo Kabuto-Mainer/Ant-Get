@@ -65,6 +65,7 @@ try:
         print(f"{voltage:.3f} V")
         time.sleep(0.1)
 
+
 finally:
     if adc is not None:
         adc.destroy()
