@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-
+import time
 
 class R2R_ADC:
     def __init__(self, dynamic_range, compare_time = 0.01, verbose = False):
@@ -18,11 +18,11 @@ class R2R_ADC:
         GPIO.output(self.bits_gpio, 0)
         GPIO.cleanup()
 
-    def num_to_dac(self,  num):
-        max_value = 2 ** len(self.bits_gpio) - 1;
+    def number_to_dac(self,  number):
+        max_value = 2 ** len(self.bits_gpio) - 1
         if not 0 <= number <= max_value:
             print(f"Число должно быть в диапазоне 0..{max_value}")
-            num = num % max_value
+            number = number % max_value
 
         bits = [int(bit) for bit in f"{number:0{len(self.bits_gpio)}b}"]
         GPIO.output(self.bits_gpio, bits)
@@ -31,7 +31,7 @@ class R2R_ADC:
             print(f"DAC <= {number:3d} | bits = {bits}")
 
     def sequential_counting_adc(self):
-        max_value = 2 ** len(self.bits_gpio) - 1;
+        max_value = 2 ** len(self.bits_gpio) - 1
         for number in range(max_value + 1):
             self.number_to_dac(number)
             time.sleep(self.compare_time)
@@ -41,13 +41,13 @@ class R2R_ADC:
             if self.verbose:
                 print(f"number = {number:3d}, comp = {comp_value}")
 
-            if comp_value == 0:
+            if comp_value == 1:
                 return number
 
         return max_value
 
     def get_sc_voltage(self):
-        max_value = 2 ** len(self.bits_gpio) - 1;
+        max_value = 2 ** len(self.bits_gpio) - 1
         digital_value = self.sequential_counting_adc()
         voltage = digital_value / max_value * self.dynamic_range
 
