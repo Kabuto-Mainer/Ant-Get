@@ -1,4 +1,4 @@
-from mcp3021_driver.py import MCP
+import mcp3021_driver as MCP
 import time
 from adc_plot import plot_voltage_vs_time, plot_sampling_period_hist
 
