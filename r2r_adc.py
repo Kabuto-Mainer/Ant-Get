@@ -56,16 +56,16 @@ class R2R_ADC:
 
         return voltage
 
+if __name__ == "__main__":
+    try:
+        adc = R2R_ADC(dynamic_range=3.3, compare_time=0.01, verbose=False)
 
-try:
-    adc = R2R_ADC(dynamic_range=3.3, compare_time=0.01, verbose=False)
-
-    while True:
-        voltage = adc.get_sc_voltage()
-        print(f"{voltage:.3f} V")
-        time.sleep(0.1)
+        while True:
+            voltage = adc.get_sc_voltage()
+            print(f"{voltage:.3f} V")
+            time.sleep(0.1)
 
 
-finally:
-    if adc is not None:
-        adc.destroy()
+    finally:
+        if adc is not None:
+            adc.destroy()
